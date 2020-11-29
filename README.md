@@ -7,6 +7,7 @@ Dissension is a Java library designed for use alongside [Discord4J](https://gith
 ## Features
 * Easily create commands.
 * Clean tree-based arguments system.
+* Simple reaction emoji listeners.
 
 (More coming soon, this library is still in development ATM)
 ## Examples
