@@ -19,9 +19,10 @@ bot.start();
 **Commands**
 ```java
 new Command.Builder()
+    .setPrefix("ex!")
     .setName("example")
     .setArgs(null)
-    .setExecutor(((message, args) -> {
+    .setExecutor(((event, args) -> {
         System.out.println(Arrays.toString(args));
     }))
     .build();
