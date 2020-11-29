@@ -65,7 +65,7 @@ public class Command {
                 MessageHelper.sendMessage(message, ArgsHelper.getUsage(this, result.getBranch()));
                 return;
             }
-            executor.onCommandRun(event, args);
+            executor.onExecute(event, args);
         }
     }
 
@@ -115,6 +115,6 @@ public class Command {
 
     @FunctionalInterface
     public interface Executor {
-        void onCommandRun(MessageCreateEvent event, String[] args);
+        void onExecute(MessageCreateEvent event, String[] args);
     }
 }

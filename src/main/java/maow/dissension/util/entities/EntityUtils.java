@@ -2,6 +2,7 @@ package maow.dissension.util.entities;
 
 import discord4j.core.object.entity.*;
 import discord4j.core.object.entity.channel.MessageChannel;
+import discord4j.core.object.reaction.ReactionEmoji;
 import discord4j.rest.util.PermissionSet;
 import reactor.core.publisher.Mono;
 
