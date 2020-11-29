@@ -7,7 +7,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-public final class Registry {
+public class Registry {
     public static final TypedRegistry<Command> COMMANDS = new TypedRegistry<>();
     public static final TypedRegistry<ReactionListener> REACTION_LISTENERS = new TypedRegistry<>();
 
@@ -27,7 +27,7 @@ public final class Registry {
         return registry.getValues();
     }
 
-    private static class TypedRegistry<T> {
+    protected static class TypedRegistry<T> {
         private final Map<Object, T> registry = new HashMap<>();
 
         public void register(Object id, T obj) {
