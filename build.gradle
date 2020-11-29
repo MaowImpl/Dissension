@@ -1,0 +1,19 @@
+plugins {
+    id 'java'
+}
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+group = "maow"
+archivesBaseName = "dissension"
+version = "1.0.0"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "com.discord4j:discord4j-core:${project.discord4j_version}"
+    implementation "com.google.code.gson:gson:${project.gson_version}"
+}
