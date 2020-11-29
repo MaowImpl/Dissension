@@ -4,13 +4,17 @@ import discord4j.core.DiscordClient;
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.message.MessageCreateEvent;
 import discord4j.core.event.domain.message.ReactionAddEvent;
+import discord4j.core.object.entity.Member;
 import maow.dissension.command.Command;
 import maow.dissension.event.reaction.ReactionListener;
 import maow.dissension.registry.Registry;
 import maow.dissension.util.FileIO;
+import maow.dissension.util.entities.EntityUtils;
 
 import java.util.Arrays;
 import java.util.Collection;
+
+import static maow.dissension.util.entities.EntityUtils.*;
 
 public class Bot {
     private final Executor executor;
@@ -52,9 +56,12 @@ public class Bot {
         gateway.getEventDispatcher()
                 .on(ReactionAddEvent.class)
                 .subscribe(event -> {
-                    final Collection<ReactionListener> listeners = Registry.getValues(Registry.REACTION_LISTENERS);
-                    for (ReactionListener listener : listeners) {
-                        listener.listen(event);
+                    Member user = getAsMember(getGuild(event.getMessage().block()), getUser(event.getMessage().block()));
+                    if (user != null && !user.isBot()) {
+                        final Collection<ReactionListener> listeners = Registry.getValues(Registry.REACTION_LISTENERS);
+                        for (ReactionListener listener : listeners) {
+                            listener.listen(event);
+                        }
                     }
         });
 
