@@ -15,6 +15,7 @@ import java.util.Map;
 public class FileIO {
     private static final Path BOT_PROPERTIES_PATH = Paths.get("bot-properties.json");
     private static final Gson GSON = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
+    private static Map<String, String> BOT_PROPERTIES = new HashMap<>();
 
     public static boolean init() {
         if (Files.notExists(BOT_PROPERTIES_PATH)) {
@@ -34,15 +35,17 @@ public class FileIO {
     }
 
     @SuppressWarnings("unchecked")
-    public static String readToken() {
-        Map<String, String> map = new HashMap<>();
+    public static void readProperties() {
         try {
             final FileReader reader = new FileReader(BOT_PROPERTIES_PATH.toFile());
-            map = GSON.fromJson(reader, HashMap.class);
+            BOT_PROPERTIES = GSON.fromJson(reader, HashMap.class);
             reader.close();
         } catch (final IOException e) {
             e.printStackTrace();
         }
-        return map.get("token");
+    }
+
+    public static String getProperty(String id) {
+        return BOT_PROPERTIES.get(id);
     }
 }

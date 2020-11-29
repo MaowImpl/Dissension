@@ -13,17 +13,26 @@ import java.util.Arrays;
 import java.util.Collection;
 
 public class Bot {
+    private final Executor executor;
+
+    protected Bot(Executor executor) {
+        this.executor = executor;
+    }
+
     protected void start() {
         if (FileIO.init()) {
             System.out.println("Please specify a bot token in your 'bot-properties.json' file.");
             return;
         }
-        String token = FileIO.readToken();
+        FileIO.readProperties();
+        String token = FileIO.getProperty("token");
 
         final DiscordClient client = DiscordClient.create(token);
         GatewayDiscordClient gateway = client.login().block();
 
         if (gateway == null) return;
+
+        if (executor != null) executor.execute(gateway);
 
         gateway.getEventDispatcher()
                 .on(MessageCreateEvent.class)
@@ -50,5 +59,10 @@ public class Bot {
         });
 
         gateway.onDisconnect().block();
+    }
+
+    @FunctionalInterface
+    public interface Executor {
+        void execute(GatewayDiscordClient gateway);
     }
 }
