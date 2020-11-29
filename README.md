@@ -1,2 +1,2 @@
-# Dissension
-Discord4J common utilities library/framework.
+![Logo](https://i.imgur.com/HUchPtQ.png)
+---
