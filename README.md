@@ -43,3 +43,13 @@ Args args = Args.start(
     )
 );
 ```
+**Reaction Listeners**
+```java
+new ReactionListener(true, message,
+    new ReactionHandler(
+        ReactionEmoji.unicode("\uD83D\uDC4D"),
+        reactionEvent -> System.out.println(":thumbsup: added.")
+    ),
+    new ReactionHandler(...)
+);
+```
