@@ -15,7 +15,7 @@ Dissension is a Java library designed for use alongside [Discord4J](https://gith
 **Setup**
 ```java
 Bot bot = new Bot();
-bot.start(<bot token>);
+bot.start();
 ```
 **Commands**
 ```java
