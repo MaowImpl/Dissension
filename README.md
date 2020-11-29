@@ -30,9 +30,9 @@ new Command.Builder()
 ```java
 Args args = Args.start(
     Args.optional(),
-        Args.branch(
-            Args.arg("list")
-        ),
+    Args.branch(
+        Args.arg("list")
+    ),
     Args.branch(
         Args.arg("add"),
         Args.anon()
@@ -48,7 +48,7 @@ Args args = Args.start(
 new ReactionListener(true, message,
     new ReactionHandler(
         ReactionEmoji.unicode("\uD83D\uDC4D"),
-        reactionEvent -> System.out.println(":thumbsup: added.")
+        event -> System.out.println(":thumbsup: added.")
     ),
     new ReactionHandler(...)
 );
